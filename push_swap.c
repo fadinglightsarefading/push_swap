@@ -60,7 +60,7 @@ int	init_stack(t_list **stack_a, int *input_nums, int arg_count)
 
 	if (!input_nums)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	while (arg_count--)
