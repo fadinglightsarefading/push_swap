@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cclarke <cclarke@student.42prague.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/27 13:34:57 by cclarke           #+#    #+#             */
+/*   Updated: 2026/04/27 17:05:04 by cclarke          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include "libft/libft.h"
 
@@ -64,7 +76,11 @@ int	*final_set(int arg_count, char ***protostack)
 	if (!input_numbers_interm)
 		return (NULL);
 	if (init_interm(*protostack, input_numbers_interm, arg_count))
+	{
+		free_protostack(protostack);
+		free(input_numbers_interm);
 		return (NULL);
+	}
 	free_protostack(protostack);
 	input_numbers = malloc(arg_count * sizeof(int));
 	if (!input_numbers)
@@ -86,7 +102,10 @@ int	*parse_input(int argc, char *argv[], int *arg_count)
 	if (!protostack)
 		return (NULL);
 	if (check_length(protostack))
+	{
+		free_protostack(&protostack);
 		return (NULL);
+	}
 	*arg_count = 0;
 	while (protostack[*arg_count])
 		(*arg_count)++;

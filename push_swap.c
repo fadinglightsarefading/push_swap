@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cclarke <cclarke@student.42prague.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/27 13:35:51 by cclarke           #+#    #+#             */
+/*   Updated: 2026/04/27 16:35:40 by cclarke          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include "libft/libft.h"
 
@@ -80,22 +92,23 @@ int	main(int argc, char *argv[])
 	int			arg_count;
 	int			*input_numbers;
 
+	if (argc == 1)
+		return (0);
 	stack_a = (NULL);
 	stack_b = (NULL);
 	input_numbers = parse_input(argc, argv, &arg_count);
-	if (init_stack(&stack_a, input_numbers, arg_count)
-		|| ft_lstsize(stack_a) == 1)
-		return (0);
-	if (ft_lstsize(stack_a) == 3)
+	if (init_stack(&stack_a, input_numbers, arg_count) || is_sorted(stack_a))
+		argc = 0;
+	if (argc && ft_lstsize(stack_a) == 3)
 		sort_three(&stack_a);
-	else if (ft_lstsize(stack_a) > 3)
+	else if (argc && ft_lstsize(stack_a) > 3)
 	{
 		push_b(&stack_a, &stack_b);
 		push_a(&stack_a, &stack_b);
 		sort_final(&stack_a);
 	}
 	else
-		if (!is_sorted(stack_a))
+		if (argc && !is_sorted(stack_a))
 			sa(&stack_a);
 	free_everything(&stack_a, &input_numbers);
 	return (0);

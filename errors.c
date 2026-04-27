@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cclarke <cclarke@student.42prague.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/27 13:33:47 by cclarke           #+#    #+#             */
+/*   Updated: 2026/04/27 17:05:47 by cclarke          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include "libft/libft.h"
 
@@ -15,7 +27,7 @@ int	input_errors(int argc, char *argv[])
 	int	arg_num;
 
 	if (argc < 2)
-		return (1);
+		return (0);
 	arg_num = 0;
 	while (++arg_num < argc)
 	{
@@ -38,6 +50,8 @@ int	duplicates(int *input, int len)
 	int	i;
 	int	j;
 
+	if (!input)
+		return (1);
 	i = -1;
 	while (++i < len)
 	{
